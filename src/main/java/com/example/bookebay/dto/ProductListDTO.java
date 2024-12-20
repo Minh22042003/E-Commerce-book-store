@@ -1,7 +1,5 @@
 package com.example.bookebay.dto;
 
-import com.example.bookebay.model.Category;
-import com.example.bookebay.model.TradeMark;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -11,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Data
-public class ProductDTO {
+public class ProductListDTO {
     private long id;
 
     private String description;
