@@ -2,9 +2,11 @@ package com.example.bookebay.repository;
 
 import com.example.bookebay.model.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface CommentRepo extends JpaRepository<Comment, Long> {
     List<Comment> findByProductId(long product_id);
 }
