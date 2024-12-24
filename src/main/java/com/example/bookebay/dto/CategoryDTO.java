@@ -11,6 +11,4 @@ public class CategoryDTO {
 
     @NotBlank(message = "category name is require")
     private String name;
-
-    private List<ProductDTO> product;
 }

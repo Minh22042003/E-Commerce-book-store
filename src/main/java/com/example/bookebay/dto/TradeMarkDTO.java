@@ -11,6 +11,4 @@ public class TradeMarkDTO {
 
     @NotBlank(message = "trademark name is require")
     private String name;
-
-    private List<ProductDTO> product;
 }

@@ -12,7 +12,7 @@ import java.util.List;
 
 @Data
 public class ProductDTO {
-    private long id;
+    private Long id;
 
     private String description;
 
