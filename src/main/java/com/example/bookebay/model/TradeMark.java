@@ -19,6 +19,6 @@ public class TradeMark {
 
     private String name;
 
-    @OneToMany(mappedBy = "trademark", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Product> product;
+//    @OneToMany(mappedBy = "trademark", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Product> product;
 }

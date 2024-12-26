@@ -15,8 +15,6 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class ProductMapper {
     private final CategoryRepo categoryRepo;
-    private final TradeMarkRepo tradeMarkRepo;
-    private final ProductRepo productRepo;
 
     public Product toEntity(ProductDTO productDTO){
         Product product = Product.builder()
@@ -34,14 +32,14 @@ public class ProductMapper {
             product.setCategory(category);
         }
 
-        if (productDTO.getTradeMark_id() != null){
-            TradeMark tradeMark = tradeMarkRepo.findById(productDTO.getTradeMark_id()).orElseThrow(
-                    () -> new ResourceNotFoundException("TradeMask not found")
-            );
-            product.setTrademark(tradeMark);
-        }
+//        if (productDTO.getTradeMark_id() != null){
+//            TradeMark tradeMark = tradeMarkRepo.findById(productDTO.getTradeMark_id()).orElseThrow(
+//                    () -> new ResourceNotFoundException("TradeMask not found")
+//            );
+//            product.setTrademark(tradeMark);
+//        }
 
-        return productRepo.save(product);
+        return product;
     }
 
     public Product editEntity(Product product, ProductDTO productDTO){
@@ -49,6 +47,7 @@ public class ProductMapper {
         product.setPrice(productDTO.getPrice());
         product.setOrigin(productDTO.getOrigin());
         product.setDescription(productDTO.getDescription());
+        product.setQuantity(product.getQuantity());
 
         if (productDTO.getCategory_id() != null){
             Category category = categoryRepo.findById(productDTO.getCategory_id()).orElseThrow(
@@ -57,13 +56,13 @@ public class ProductMapper {
             product.setCategory(category);
         }
 
-        if (productDTO.getTradeMark_id() != null){
-            TradeMark tradeMark = tradeMarkRepo.findById(productDTO.getTradeMark_id()).orElseThrow(
-                    () -> new ResourceNotFoundException("TradeMask not found")
-            );
-            product.setTrademark(tradeMark);
-        }
+//        if (productDTO.getTradeMark_id() != null){
+//            TradeMark tradeMark = tradeMarkRepo.findById(productDTO.getTradeMark_id()).orElseThrow(
+//                    () -> new ResourceNotFoundException("TradeMask not found")
+//            );
+//            product.setTrademark(tradeMark);
+//        }
 
-        return productRepo.save(product);
+        return product;
     }
 }

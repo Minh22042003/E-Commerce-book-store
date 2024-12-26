@@ -38,6 +38,20 @@ public class AuthController {
         );
         final UserDetails userDetails = userService.getUserByEmail(req.getEmail());
         final String jwt = jwtService.generateToken(userDetails);
+
+        // Lưu thông tin vào SecurityContextHolder
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        // Kiểm tra thông tin trong SecurityContextHolder
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null) {
+            System.out.println("Authenticated User: " + auth.getName());
+            System.out.println("Authorities: "+ auth.getAuthorities());
+        } else {
+            System.out.println("No authentication information found in SecurityContextHolder");
+        }
+
         return ResponseEntity.ok(jwt);
     }
 

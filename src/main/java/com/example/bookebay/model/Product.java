@@ -38,7 +38,7 @@ public class Product {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    @ManyToOne
-    @JoinColumn(name = "trade_mark_id", nullable = false)
-    private TradeMark trademark;
+//    @ManyToOne
+//    @JoinColumn(name = "trade_mark_id")
+//    private TradeMark trademark;
 }
