@@ -43,6 +43,7 @@ public class SecurityConfig {
                         .requestMatchers("/index.html").permitAll()
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers( "/api/products/**").permitAll()
+                        .requestMatchers( "/api/comment/**").permitAll()
                         .requestMatchers("/api/auth/change-password").authenticated()
 
                         .anyRequest().authenticated()

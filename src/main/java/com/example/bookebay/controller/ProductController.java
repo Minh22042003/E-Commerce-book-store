@@ -89,6 +89,7 @@ public class ProductController {
     public ResponseEntity<Product> updateProduct(@RequestPart("product") @Valid ProductDTO productDTO,
                                                  @PathVariable Long id,
                                                  @RequestPart(value = "image", required = false) MultipartFile image) throws IOException {
+        System.out.println("edit request");
         return ResponseEntity.ok(productService.updateProduct(productDTO, id, image));
     }
 

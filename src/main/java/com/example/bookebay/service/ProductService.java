@@ -51,20 +51,7 @@ public class ProductService {
             product.setImage("/images/"+fileName);
         }
 
-        product.setName(productDTO.getName());
-        product.setPrice(productDTO.getPrice());
-        product.setOrigin(productDTO.getOrigin());
-        product.setDescription(productDTO.getDescription());
-        product.setQuantity(product.getQuantity());
-
-        if (productDTO.getCategory_id() != null){
-            Category category = categoryRepo.findById(productDTO.getCategory_id()).orElseThrow(
-                    () -> new ResourceNotFoundException("Category not found")
-            );
-            product.setCategory(category);
-        }
-
-        return productRepo.save(product);
+        return productRepo.save(productMapper.editEntity(product, productDTO));
     }
 
     @Transactional

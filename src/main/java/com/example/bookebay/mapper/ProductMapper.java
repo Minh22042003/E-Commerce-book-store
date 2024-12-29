@@ -4,10 +4,7 @@ import com.example.bookebay.dto.ProductDTO;
 import com.example.bookebay.exception.ResourceNotFoundException;
 import com.example.bookebay.model.Category;
 import com.example.bookebay.model.Product;
-import com.example.bookebay.model.TradeMark;
 import com.example.bookebay.repository.CategoryRepo;
-import com.example.bookebay.repository.ProductRepo;
-import com.example.bookebay.repository.TradeMarkRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -32,13 +29,6 @@ public class ProductMapper {
             product.setCategory(category);
         }
 
-//        if (productDTO.getTradeMark_id() != null){
-//            TradeMark tradeMark = tradeMarkRepo.findById(productDTO.getTradeMark_id()).orElseThrow(
-//                    () -> new ResourceNotFoundException("TradeMask not found")
-//            );
-//            product.setTrademark(tradeMark);
-//        }
-
         return product;
     }
 
@@ -47,7 +37,7 @@ public class ProductMapper {
         product.setPrice(productDTO.getPrice());
         product.setOrigin(productDTO.getOrigin());
         product.setDescription(productDTO.getDescription());
-        product.setQuantity(product.getQuantity());
+        product.setQuantity(productDTO.getQuantity());
 
         if (productDTO.getCategory_id() != null){
             Category category = categoryRepo.findById(productDTO.getCategory_id()).orElseThrow(
@@ -55,13 +45,6 @@ public class ProductMapper {
             );
             product.setCategory(category);
         }
-
-//        if (productDTO.getTradeMark_id() != null){
-//            TradeMark tradeMark = tradeMarkRepo.findById(productDTO.getTradeMark_id()).orElseThrow(
-//                    () -> new ResourceNotFoundException("TradeMask not found")
-//            );
-//            product.setTrademark(tradeMark);
-//        }
 
         return product;
     }
