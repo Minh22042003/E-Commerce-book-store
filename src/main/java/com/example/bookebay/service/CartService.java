@@ -65,12 +65,30 @@ public class CartService {
         return cartMapper.toDTO(cart, userId);
     }
 
+    public Cart getCart(Long userId) {
+        Cart cart = cartRepo.findByUserId(userId).orElseThrow(
+                () -> new ResourceNotFoundException("Cart not be found")
+        );
+
+        return cart;
+    }
+
     public void removeCartItem(Long userId, Long productId){
         Cart cart = cartRepo.findByUserId(userId).orElseThrow(
                 () -> new ResourceNotFoundException("Cart not be found")
         );
 
         cart.getCartItems().removeIf(cartItem -> cartItem.getProduct().getId().equals(productId));
+
+        cartRepo.save(cart);
+    }
+
+    public void clearCart(Long userId){
+        Cart cart = cartRepo.findByUserId(userId).orElseThrow(
+                () -> new ResourceNotFoundException("Cart not be found")
+        );
+
+        cart.getCartItems().clear();
 
         cartRepo.save(cart);
     }

@@ -2,12 +2,14 @@ package com.example.bookebay.dto;
 
 import com.example.bookebay.model.Order;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
+@Builder
 public class OrderDTO {
     private Long id;
 

@@ -62,8 +62,8 @@ public class UserService {
         userRepo.save(user);
     }
 
-    public void confirmEmail(String email, String confirmationCode){
-        User user = getUserByEmail(email);
+    public void confirmEmail(Long id, String confirmationCode){
+        User user = getUserById(id);
 
         if (user.getConfirmationCode().equals(confirmationCode)){
             user.setEmailConfirmation(true);

@@ -6,7 +6,6 @@ import com.example.bookebay.model.User;
 import com.example.bookebay.service.JwtService;
 import com.example.bookebay.service.UserService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,10 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/auth")
@@ -72,9 +68,17 @@ public class AuthController {
 
     @PostMapping("/email/confirm")
     @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<Void> addConfirmationCodeToUser(@AuthenticationPrincipal UserDetails userDetails){
+    public ResponseEntity<String> confirmEmail(@AuthenticationPrincipal UserDetails userDetails,
+                                             @RequestParam String code){
         Long id = ((User) userDetails).getId();
-        userService.addConfirmationCodeToUser(id);
-        return ResponseEntity.noContent().build();
+        userService.confirmEmail(id, code);
+        return ResponseEntity.ok("success");
+    }
+
+    @GetMapping
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<User> viewCurrentUser(@AuthenticationPrincipal UserDetails userDetails){
+        Long id = ((User) userDetails).getId();
+        return ResponseEntity.ok(userService.getUserById(id));
     }
 }
